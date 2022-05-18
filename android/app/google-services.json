@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "156635156498",
+    "project_id": "flutterfirebase-ec10c",
+    "storage_bucket": "flutterfirebase-ec10c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156635156498:android:f32fd8f511758e62c708cb",
+        "android_client_info": {
+          "package_name": "id.priesca.polinema.myfirebase.flutter_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156635156498-6kgrd6sbkvs5oqj8f8uk53aj82fpdn6g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.priesca.polinema.myfirebase.flutter_firebase",
+            "certificate_hash": "3c6b20e4320aad6fa43d5194c3fc73661173e69d"
+          }
+        },
+        {
+          "client_id": "156635156498-i1vjtgohl5svp90f2liepgkdoc12t8et.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlmtjM0YPpqf4mH8X1rT2W3HllFnGmogY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156635156498-i1vjtgohl5svp90f2liepgkdoc12t8et.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
