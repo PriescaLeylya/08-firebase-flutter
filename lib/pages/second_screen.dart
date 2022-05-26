@@ -1,13 +1,12 @@
-//PRIESCA LEYLYA SYAFITRI
-//2031710176
-
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/pages/login_page.dart';
 import 'package:flutter_firebase/helper/sign_in.dart';
 
-class FirstScreen extends StatelessWidget {
-  const FirstScreen({Key key}) : super(key: key);
-
+//PRIESCA LEYLYA SYAFITRI
+//2031710176
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({Key key, this.email}) : super(key: key);
+  final String email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,29 +26,6 @@ class FirstScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              CircleAvatar(
-                backgroundImage: NetworkImage(
-                  imageUrl,
-                ),
-                radius: 60,
-                backgroundColor: Colors.transparent,
-              ),
-              const SizedBox(height: 40),
-              const Text(
-                'NAME',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54),
-              ),
-              Text(
-                name,
-                style: const TextStyle(
-                    fontSize: 25,
-                    color: Color.fromARGB(255, 133, 89, 210),
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20),
               const Text(
                 'EMAIL',
                 style: TextStyle(
@@ -61,20 +37,19 @@ class FirstScreen extends StatelessWidget {
                 email,
                 style: const TextStyle(
                     fontSize: 25,
-                    color: Colors.deepPurple,
+                    color: Color.fromARGB(255, 221, 174, 218),
                     fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 40),
               RaisedButton(
                 onPressed: () {
                   signOutGoogle();
-
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context) {
                     return LoginPage();
                   }), ModalRoute.withName('/'));
                 },
-                color: Colors.deepPurple,
+                color: Color.fromARGB(255, 205, 111, 199),
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(

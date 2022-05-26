@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/helper/sign_in.dart';
+import 'package:flutter_firebase/helper/authentication.dart';
 import 'package:flutter_firebase/pages/first_screen.dart';
+import 'package:flutter_firebase/pages/second_screen.dart';
+
+//PRIESCA LEYLYA SYAFITRI
+//2031710176
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
+
+TextEditingController _emailController = TextEditingController(text: "");
+TextEditingController _passController = TextEditingController(text: "");
 
 class _LoginPageState extends State<LoginPage> {
   @override
@@ -13,71 +23,122 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              FlutterLogo(size: 150),
-              SizedBox(height: 50),
-              Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(left: 30, right: 30, bottom: 10),
-                child: TextFormField(
-                  autofocus: true,
-                  decoration: new InputDecoration(
-                    hintText: "masukan email",
-                    labelText: "Email",
-                    icon: Icon(Icons.people),
-                    border: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(5.0)),
-                  ),
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(left: 30, right: 30, bottom: 10),
-                child: TextFormField(
-                  autofocus: true,
-                  decoration: new InputDecoration(
-                    hintText: "masukan password",
-                    labelText: "Password",
-                    icon: Icon(Icons.people),
-                    border: OutlineInputBorder(
-                        borderRadius: new BorderRadius.circular(5.0)),
-                  ),
-                ),
-              ),
-              Container(
-                  margin: EdgeInsets.only(top: 15),
-                  width: 250,
-                  height: 55,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 69, 165, 233),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const SizedBox(height: 70),
+                        const FlutterLogo(size: 150),
+                        const SizedBox(height: 20),
+                        Form(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const SizedBox(height: 2),
+                              Center(
+                                child: Container(
+                                  width: 320,
+                                  child: TextFormField(
+                                    controller: _emailController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: InputDecoration(
+                                      hintText: 'Email',
+                                      fillColor: Colors.white,
+                                      filled: true,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: const BorderSide(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: const BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 121, 155, 215),
+                                        ),
+                                      ),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 16),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              const SizedBox(height: 2),
+                              Center(
+                                child: Container(
+                                  width: 320,
+                                  child: TextFormField(
+                                    controller: _passController,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                      hintText: 'Password',
+                                      fillColor: Colors.white,
+                                      filled: true,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: const BorderSide(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: const BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 121, 155, 215),
+                                        ),
+                                      ),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 4, horizontal: 16),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              const _Loginbutton(),
+                              const SizedBox(height: 10),
+                              const _Registerbutton(),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          children: const <Widget>[
+                            Expanded(
+                              child: Divider(
+                                thickness: 1,
+                                color: Colors.black,
+                              ),
+                            ),
+                            SizedBox(width: 20),
+                            Text(
+                              'OR',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            SizedBox(width: 20),
+                            Expanded(
+                              child: Divider(thickness: 1, color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        _signInButton(),
+                      ],
                     ),
-                    onPressed: () {},
-                    child: Text(
-                      "Sign in",
-                      style: TextStyle(
-                        color: Color(0xffffffff),
-                      ),
-                    ),
                   ),
-                ),
-                 Container(
-                margin: const EdgeInsets.only(top: 10, bottom: 15),
-                child: const Text(
-                  "or",
-                  style: TextStyle(fontSize: 20),
-                )
-                ),
-              _signInButton(),
-            ],
-          ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -92,27 +153,25 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) {
-                  return FirstScreen();
+                  return const FirstScreen();
                 },
               ),
             );
           }
         });
       },
-      
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
-      borderSide: BorderSide(color: Colors.grey),
+      borderSide: const BorderSide(color: Colors.grey),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-        
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image(image: AssetImage("assets/google_logo.png"), height: 35.0),
+          children: const <Widget>[
+            Image(image: AssetImage("images/logo_google.png"), height: 35.0),
             Padding(
-              padding: const EdgeInsets.only(left: 10),
+              padding: EdgeInsets.only(left: 10),
               child: Text(
                 'Sign in with Google',
                 style: TextStyle(
@@ -122,6 +181,106 @@ class _LoginPageState extends State<LoginPage> {
               ),
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Registerbutton extends StatelessWidget {
+  const _Registerbutton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 320,
+        child: RaisedButton(
+          onPressed: () async {
+            AuthenticationHelper()
+                .signUp(_emailController.text, _passController.text)
+                .then((result) {
+              if (result == null) {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SecondScreen(
+                              email: _emailController.text,
+                            )));
+              } else {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                    result,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ));
+              }
+            });
+          },
+          child: const Text(
+            'Register',
+            style: TextStyle(color: Colors.white),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          color: Color.fromARGB(255, 25, 114, 196),
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(
+            vertical: 16,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Loginbutton extends StatelessWidget {
+  const _Loginbutton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        width: 320,
+        child: RaisedButton(
+          onPressed: () async {
+            await AuthenticationHelper()
+                .signIn(_emailController.text, _passController.text)
+                .then((result) {
+              if (result == null) {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SecondScreen(
+                              email: _emailController.text,
+                            )));
+              } else {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                    result,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ));
+              }
+            });
+          },
+          child: const Text(
+            'Login',
+            style: TextStyle(color: Colors.white),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          color: Color.fromARGB(255, 151, 151, 151),
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(
+            vertical: 16,
+          ),
         ),
       ),
     );
